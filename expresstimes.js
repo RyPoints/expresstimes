@@ -1,4 +1,5 @@
 //const axios = require('axios');
+const express = require("express");
 const Sequelize = require('sequelize');
 
 // Database
@@ -25,20 +26,28 @@ function readKey(file) {
 	}
 }
 
-// To run locally, comment the exports.handler:
-//exports.handler = function(event, context) {
-	query = '';
-	Article.findAll().then(function(article){
+// Web Application
+const PORT = 1234;
+const app = express();
 
+app.get("/articles", (req, res) => {
+	var body = '';
+	Article.findAll().then(function(article){
 		article.forEach(function(article) {
 
-			console.log(article.title);
-            console.log(article.text);
+			body += "<BR>" + article.title + "<BR><BR>" + article.text + "<BR><BR>";
 
-		});
-
-	}).catch(function(error){
-		console.log(error);
+			});
+			res.send(body);
 	});
+	
+  });
+
+app.listen(1234, () => {
+	console.log("Server is listening on port: 1234");
+});
+
+
+
 
 //};
