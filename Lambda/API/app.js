@@ -2,10 +2,6 @@ const Sequelize = require('sequelize');
 
 // Database
 const sequelize = new Sequelize(readKey('database.key'));
-// const sequelize = new Sequelize('articledb', 'postgres', '3xpress+imes', {
-//   host: 'expressdb.cmf2cefclruk.us-east-1.rds.amazonaws.com:5432',
-//   dialect: 'postgres'
-// });
 
 // Model
 class Article extends Sequelize.Model {}
@@ -43,3 +39,13 @@ console.log('logging');
 
   
 });
+
+api.post('/post', function (request) {
+  
+	console.log('logging');
+	  //articles = articles.reverse();
+		console.log(request.body);
+		return request.body;
+	
+	  
+	});
