@@ -1,0 +1,57 @@
+{
+  "name": "expresstimes",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@react-navigation/web": "^1.0.0-alpha.9",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "antd": "^3.26.0",
+    "aws-sdk": "^2.585.0",
+    "loader-runner": "^3.1.0",
+    "lodash": "^4.17.15",
+    "lowdb": "^1.0.0",
+    "mauerwerk": "^2.0.2",
+    "mysql": "^2.17.1",
+    "mysql2": "^2.0.2",
+    "node-pre-gyp": "^0.14.0",
+    "pg": "^7.14.0",
+    "pg-hstore": "^2.3.3",
+    "pg-native": "^3.0.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-html-parser": "^2.0.2",
+    "react-native-gesture-handler": "^1.5.2",
+    "react-native-screens": "^2.0.0-alpha.17",
+    "react-navigation": "^4.0.10",
+    "react-navigation-stack": "^1.10.3",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "3.3.0",
+    "sequelize": "^4.42.0",
+    "sequelize-cli": "^5.5.1",
+    "sqlite3": "^4.1.1",
+    "tedious": "^6.6.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
