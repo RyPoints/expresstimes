@@ -1,7 +1,7 @@
 import './styles.css'
 import defaultdata from './defaultdata'
 import lodash from 'lodash'
-import ReactHtmlParser from 'react-html-parser'; 
+import ReactHtmlParser from 'react-html-parser';
 import { Icon } from 'antd'
 import 'antd/dist/antd.css'
 import HomeHeader from './HomeHeader'
@@ -12,18 +12,16 @@ import React, { Component, Fragment } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 function readKey(file) {
-	var fs = require('fs');
-	try {
-		var string = fs.readFileSync(file, 'utf8');
-		return string;
-	} catch(e) {
-	console.log('Error:', e.stack);
-	}
+  var fs = require('fs');
+  try {
+    var string = fs.readFileSync(file, 'utf8');
+    return string;
+  } catch (e) {
+    console.log('Error:', e.stack);
+  }
 }
 
-
-
-const Cell = ({ toggle, title, article, name, height, description, css, maximized }) => (
+const Cell = ({ toggle, title, article, maximized }) => (
   <div
     className="cell"
     style={{ backgroundImage: 'linear-gradient(-225deg, #FFFEFF 0%, #E5F0FF 100%)', cursor: !maximized ? 'pointer' : 'auto' }}
@@ -47,7 +45,7 @@ const Cell = ({ toggle, title, article, name, height, description, css, maximize
       delay={maximized ? 0 : 400}>
       <div className="title">{title}</div>
       <p>
-      <div className="content">{ReactHtmlParser(article)}</div>
+        <div className="content">{ReactHtmlParser(article)}</div>
       </p>
     </Fade>
   </div>
@@ -64,27 +62,24 @@ class HomeScreen extends React.Component {
   }
 
   componentDidMount() {
-
-    fetch('https://lhk56kti7b.execute-api.us-east-1.amazonaws.com/latest/get')
+    fetch('https://r8btapgiw9.execute-api.us-east-1.amazonaws.com/latest/get')
       .then(res => res.json())
       .then(
         (result) => {
           this.setState({
-          isLoaded: true,
-          articles: result
-        });
-      },
-      (error) => {
-        this.setState({
-          isLoaded: true,
-          error
-        });
-      }
-    )
-      // .then(response => response.json())
-      // .then(data => this.setState({ data }));
-    }
-  // Database
+            isLoaded: true,
+            articles: result
+          });
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      )
+  }
+
   state = { defaultdata, columns: 2, margin: 70, filter: '', height: true }
   search = e => this.setState({ filter: e.target.value })
   shuffle = () => this.setState(state => ({ data: lodash.shuffle(state.data) }))
@@ -92,50 +87,40 @@ class HomeScreen extends React.Component {
   setMargin = e => this.setState({ margin: parseInt(e.key) })
   setHeight = e => this.setState({ height: e })
 
-  
-
-  
-    
   render() {
-    {console.log('this.state.data')}
-    {console.log(this.state.data)}
-   
-    // var data = this.state.data.filter(
-    //   d => d.name.toLowerCase().indexOf(this.state.filter) !== -1
-    // )
-    const { error, isLoaded, articles } = this.state;
+    var { error, isLoaded, articles } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
       return <div className='center'><img src="loading.gif" class="center"></img></div>;
     } else {
-    return (
-      <div className="main">
-        <Grid
-    className="grid"
-    // Arbitrary data, should contain keys, possibly heights, etc.
-    data={articles}
-    // Key accessor, instructs grid on how to get individual keys from the data set
-    keys={d => d.title}
-    // Can be a fixed value or an individual data accessor
-    heights={this.state.height ? d => d.height : 400}
-    // Number of columns
-    columns={this.state.columns}
-    // Space between elements
-    margin={20}
-    // Removes the possibility to scroll away from a maximized element
-    lockScroll={true}
-    // Delay when active elements (blown up) are minimized again
-    closeDelay={400}>
-    {(data, maximized, toggle) => (
-      <Cell {...data} maximized={maximized} toggle={toggle} />
-    )}
-  </Grid>
-      </div>
-    )
+      isLoaded = false;
+      return (
+        <div className="main">
+          <Grid
+            className="grid"
+            // Arbitrary data, should contain keys, possibly heights, etc.
+            data={articles}
+            // Key accessor, instructs grid on how to get individual keys from the data set
+            keys={d => d.id}
+            // Can be a fixed value or an individual data accessor
+            heights={this.state.height ? d => d.height : 400}
+            // Number of columns
+            columns={this.state.columns}
+            // Space between elements
+            margin={20}
+            // Removes the possibility to scroll away from a maximized element
+            lockScroll={true}
+            // Delay when active elements (blown up) are minimized again
+            closeDelay={400}>
+            {(data, maximized, toggle) => (
+              <Cell {...data} maximized={maximized} toggle={toggle} />
+            )}
+          </Grid>
+        </div>
+      )
     }
   }
-
 }
 
 export default HomeScreen

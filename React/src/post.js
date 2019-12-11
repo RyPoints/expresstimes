@@ -4,29 +4,6 @@ import React, { Component, Fragment } from 'react'
 import { Button, Icon, Input, Dropdown, Menu } from 'antd'
 import TextareaAutosize from 'react-textarea-autosize';
 
-function readKey(file) {
-	var fs = require('fs');
-	try {
-		var string = fs.readFileSync(file, 'utf8');
-		return string;
-	} catch(e) {
-	console.log('Error:', e.stack);
-	}
-}
-
-const inputParsers = {
-  date(input) {
-    const [month, day, year] = input.split('/');
-    return `${year}-${month}-${day}`;
-  },
-  uppercase(input) {
-    return input.toUpperCase();
-  },
-  number(input) {
-    return parseFloat(input);
-  },
-};
-
 class PostScreen extends Component {
   constructor() {
     super();
@@ -41,55 +18,59 @@ class PostScreen extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-   
-    fetch('https://lhk56kti7b.execute-api.us-east-1.amazonaws.com/latest/post', {
+
+    var div = document.createElement("div");
+    div.innerText = this.state.article;
+    console.log(div.innerHTML);
+    fetch('https://r8btapgiw9.execute-api.us-east-1.amazonaws.com/latest/post', {
       method: 'POST',
-      body: JSON.stringify({"title": this.state.title, "article": this.state.article}),
-      headers: {'Content-Type': 'application/json'}
-      })
+      body: JSON.stringify({ "title": this.state.title, "article": div.innerHTML }),
+      headers: { 'Content-Type': 'application/json' }
+    })
       .then(response => {
         console.log(response);
-        if (response.ok) { 
+        if (response.ok) {
           const { history } = this.props;
           history.push("/articles");
+          //Refresh so we load the new content
+          window.location.reload(false)
         }
 
-    });
-    
+      });
+
   }
 
   handleTitleChange = (e) => {
-    this.setState({title: e.target.value});
-}
+    this.setState({ title: e.target.value });
+  }
 
-handleArticleChange = (e) => {
-    this.setState({article: e.target.value});
-}
+  handleArticleChange = (e) => {
+    this.setState({ article: e.target.value });
+  }
 
   render() {
     return (
       <form id="paper" onSubmit={this.handleSubmit}>
         <p>
-        <div id="namer">
-        <div id="namer-input">
-        <input type="text" name="namername" placeholder="Enter your article's title." data-parse="uppercase" onChange={this.handleTitleChange}/>
-       </div>
-       </div>
+          <div id="namer">
+            <div id="namer-input">
+              <input type="text" name="namername" placeholder="Enter your article's title." data-parse="uppercase" onChange={this.handleTitleChange} />
+            </div>
+          </div>
         </p>
         <p>
-      <div>
-        <TextareaAutosize placeholder="Enter your article's text." id="text" name="article" rows="4" onChange={this.handleArticleChange}/>
-        </div>
+          <div>
+            <TextareaAutosize placeholder="Enter your article's text." id="text" name="article" rows="4" onChange={this.handleArticleChange} />
+          </div>
         </p>
 
         <Button type="secondary" onClick={this.handleSubmit}>
-        Add Article
+          Add Article
       </Button>
 
       </form>
     );
   }
-
 }
 
 export default PostScreen

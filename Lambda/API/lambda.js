@@ -1,3 +1,4 @@
+const shortid = require('shortid');
 const Sequelize = require('sequelize');
 
 // Database
@@ -6,8 +7,12 @@ const sequelize = new Sequelize(readKey('database.key'));
 // Model
 class Article extends Sequelize.Model {}
 Article.init({
-  title: Sequelize.TEXT,
-  article: Sequelize.TEXT
+  id: {
+	  primaryKey: true,
+	  type:Sequelize.TEXT
+	},
+  	title: Sequelize.TEXT,
+  	article: Sequelize.TEXT
 }, { sequelize, modelName: 'article' });
 
 function readKey(file) {
@@ -24,6 +29,8 @@ function readKey(file) {
 var ApiBuilder = require('claudia-api-builder'),
   api = new ApiBuilder();
 module.exports = api;
+//api.corsHeaders('Access-Control-Allow-Origin');
+//api.corsOrigin(false)
 
 api.get('/get', function () {
   
@@ -38,10 +45,8 @@ api.post('/post', function (request) {
 		const article = request.body.article;
 
 		Article
-  			.create({ title: title, article: article })
+  			.create({ id: shortid.generate(), title: title, article: article })
   			.then(function(article) {
-    		console.log(article.get('title')); 
-    		console.log(article.get('article')); 
  		})
 		.then(() => api.sendStatus(200));
 
