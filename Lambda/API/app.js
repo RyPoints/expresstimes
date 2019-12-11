@@ -6,10 +6,6 @@ const sequelize = new Sequelize(readKey('database.key'));
 // Model
 class Article extends Sequelize.Model {}
 Article.init({
-  id: {
-	  primaryKey: true,
-	  type:Sequelize.INTEGER
-	},
   title: Sequelize.TEXT,
   article: Sequelize.TEXT
 }, { sequelize, modelName: 'article' });
@@ -24,28 +20,29 @@ function readKey(file) {
 	}
 }
 
+// API
 var ApiBuilder = require('claudia-api-builder'),
   api = new ApiBuilder();
-
 module.exports = api;
 
 api.get('/get', function () {
   
-console.log('logging');
   articles = Article.findAll();
-  //articles = articles.reverse();
 	console.log('articles');
 	  return articles;
-
-  
 });
 
 api.post('/post', function (request) {
-  
-	console.log('logging');
-	  //articles = articles.reverse();
-		console.log(request.body);
-		return request.body;
-	
-	  
+
+		const title = request.body.title;
+		const article = request.body.article;
+
+		Article
+  			.create({ title: title, article: article })
+  			.then(function(article) {
+    		console.log(article.get('title')); 
+    		console.log(article.get('article')); 
+ 		})
+		.then(() => api.sendStatus(200));
+
 	});
