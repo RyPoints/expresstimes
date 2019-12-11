@@ -1,31 +1,26 @@
 # The Express Times
 A newspaper GET/POST example in the JavaScript React stack.
 
+A live version of the React App is presently being uploaded to [https://master.d3p596d2o05yrq.amplifyapp.com](https://master.d3p596d2o05yrq.amplifyapp.com)
+
 ## Architecture
 [![Architecture](.images/architecture.png)](.images/architecture.png)
 A React App connects to AWS Lambda, retrieving and posting articles to a Postgres database.
 
 ## Lambda
-
-A short Lambda function is used to write and read the Postgres database using [Sequelize](https://sequelize.org) and Lambda function uploading and API endpoint creation was handled with [Claudia.js](https://claudiajs.com).
+A short Lambda function is used to write and read the Postgres database using [Sequelize](https://sequelize.org).  Lambda function uploading and API endpoint creation was handled with [Claudia.js](https://claudiajs.com).
 
 ## React
-
-An existing React grid component was further customized to provide display of articles.  This allowed display of the articles in a good-looking format without using a templating engine.
+An existing React [grid component](https://github.com/drcmda/mauerwerk) was further customized to provide display of articles.  This allowed display of the articles in a good-looking format without using a templating engine.
 
 ## UI
-
 ### Viewing
 [![UI](.images/expresstimes1.png)](.images/expresstimes1.png)
 [![UI](.images/expresstimes2.png)](.images/expresstimes2.png)
 ### Posting
 [![UI](.images/expresstimes3.png)](.images/expresstimes3.png)
 
-## Hosting
-
-A live version of the React App is up at:
-
-## From Dev to Production
+## From Development to Production
 I consider this more of a dev project, a tech demo.  If this was going to move to production, even more work would be needed, including:
 
 * Inputs from users would need to be checked to see if they were well-formed and for security purposes, because we are accepting HTML inputs, before passing them along.
