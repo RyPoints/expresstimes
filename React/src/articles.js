@@ -1,25 +1,10 @@
 import './styles.css'
 import defaultdata from './defaultdata'
-import lodash from 'lodash'
 import ReactHtmlParser from 'react-html-parser';
 import { Icon } from 'antd'
 import 'antd/dist/antd.css'
-import HomeHeader from './HomeHeader'
-import PostHeader from './PostHeader'
-import { render, Button } from 'react-dom'
 import { Grid, Slug, Fade } from 'mauerwerk'
 import React, { Component, Fragment } from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-
-function readKey(file) {
-  var fs = require('fs');
-  try {
-    var string = fs.readFileSync(file, 'utf8');
-    return string;
-  } catch (e) {
-    console.log('Error:', e.stack);
-  }
-}
 
 const Cell = ({ toggle, title, article, maximized }) => (
   <div
@@ -81,20 +66,17 @@ class HomeScreen extends React.Component {
   }
 
   state = { defaultdata, columns: 2, margin: 70, filter: '', height: true }
-  search = e => this.setState({ filter: e.target.value })
-  shuffle = () => this.setState(state => ({ data: lodash.shuffle(state.data) }))
   setColumns = e => this.setState({ columns: parseInt(e.key) })
   setMargin = e => this.setState({ margin: parseInt(e.key) })
   setHeight = e => this.setState({ height: e })
 
   render() {
-    var { error, isLoaded, articles } = this.state;
+    const { error, isLoaded, articles } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
       return <div className='center'><img src="loading.gif" class="center"></img></div>;
     } else {
-      isLoaded = false;
       return (
         <div className="main">
           <Grid
@@ -112,7 +94,7 @@ class HomeScreen extends React.Component {
             // Removes the possibility to scroll away from a maximized element
             lockScroll={true}
             // Delay when active elements (blown up) are minimized again
-            closeDelay={400}>
+            closeDelay={20}>
             {(data, maximized, toggle) => (
               <Cell {...data} maximized={maximized} toggle={toggle} />
             )}

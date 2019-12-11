@@ -3,10 +3,6 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Button, Icon, Input, Dropdown, Menu, Switch } from 'antd'
 import { NavLink } from "react-router-dom";
 
-function nagivate() {
-  this.props.navigation.navigate('/post')
-}
-
 export default function ({ }) {
   return (
     <div className="header">

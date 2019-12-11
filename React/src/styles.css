@@ -21,8 +21,6 @@ p {
   padding-top: 3px;
 }
 
-
-
 .express-times {
   position: absolute;
   font-family: "UnifrakturCook"; 
@@ -55,13 +53,6 @@ p {
   line-height: 10px;
 }
 
-.center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-}
-
 .title {
   text-transform: uppercase;
   position: absolute;
@@ -89,31 +80,6 @@ p {
 
 .cell:hover {
   box-shadow: 0px 20px 60px -10px rgba(0, 0, 0, 0.3);
-}
-
-.shuffle {
-  position: absolute;
-  top: 40px;
-  left: 40px;
-  padding: 0px 20px 0px 20px;
-  width: auto;
-  height: auto;
-  background: white;
-  border: solid 2px #ffaad4;
-  border-radius: 7px;
-  color: #ffaad4;
-  z-index: 100000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: 100;
-  line-height: 45px;
-}
-
-.shuffle:hover {
-  background: #f9f9f9;
 }
 
 .details {

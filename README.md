@@ -14,8 +14,12 @@ A short Lambda function is used to write and read the Postgres database using [S
 An existing React grid component was further customized to provide display of articles.  This allowed display of the articles in a good-looking format without using a templating engine.
 
 ## UI
+
+### Viewing
 [![UI](.images/expresstimes1.png)](.images/expresstimes1.png)
 [![UI](.images/expresstimes2.png)](.images/expresstimes2.png)
+### Posting
+[![UI](.images/expresstimes3.png)](.images/expresstimes3.png)
 
 ## Hosting
 
@@ -24,7 +28,6 @@ A live version of the React App is up at:
 ## From Dev to Production
 I consider this more of a dev project, a tech demo.  If this was going to move to production, even more work would be needed, including:
 
-* Scrolling functionality would need to be added to the details screen of the grid.
 * Inputs from users would need to be checked to see if they were well-formed and for security purposes, because we are accepting HTML inputs, before passing them along.
 * Error handling would need to be added.
 
