@@ -2,6 +2,7 @@ import './styles.css'
 import 'antd/dist/antd.css'
 import React, { Component, Fragment } from 'react'
 import { Button, Icon, Input, Dropdown, Menu } from 'antd'
+import TextareaAutosize from 'react-textarea-autosize';
 
 function readKey(file) {
 	var fs = require('fs');
@@ -69,23 +70,22 @@ handleArticleChange = (e) => {
     return (
       <form id="paper" onSubmit={this.handleSubmit}>
         <p>
-        Article title
-        <input
-          name="title"
-          type="text"
-          data-parse="uppercase"
-          onChange={this.handleTitleChange}
-        />
+        <div id="namer">
+        <div id="namer-input">
+        <input type="text" name="namername" placeholder="Enter your article's title." data-parse="uppercase" onChange={this.handleTitleChange}/>
+       </div>
+       </div>
         </p>
         <p>
-      
-        <textarea placeholder="Enter your article text." id="text" name="article" rows="4" onChange={this.handleArticleChange}></textarea> 
+      <div>
+        <TextareaAutosize placeholder="Enter your article's text." id="text" name="article" rows="4" onChange={this.handleArticleChange}/>
+        </div>
         </p>
 
-
-        <Button type="primary" onClick={this.handleSubmit}>
+        <Button type="secondary" onClick={this.handleSubmit}>
         Add Article
       </Button>
+
       </form>
     );
   }

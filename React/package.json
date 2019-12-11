@@ -28,6 +28,7 @@
     "react-navigation-stack": "^1.10.3",
     "react-router-dom": "^4.3.1",
     "react-scripts": "3.3.0",
+    "react-textarea-autosize": "^7.1.2",
     "sequelize": "^4.42.0",
     "sequelize-cli": "^5.5.1",
     "sqlite3": "^4.1.1",
