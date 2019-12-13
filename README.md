@@ -1,11 +1,11 @@
 # The Express Times
 A newspaper GET/POST example in the JavaScript React stack.
 
-A live version of the React App is presently being uploaded to [https://master.d3p596d2o05yrq.amplifyapp.com](https://master.d3p596d2o05yrq.amplifyapp.com)
+A live version of the React App is up on AWS Amplify at: [https://d30b55fn3g0obi.cloudfront.net](https://d30b55fn3g0obi.cloudfront.net)
 
 ## Architecture
 [![Architecture](.images/architecture.png)](.images/architecture.png)
-A React App connects to AWS Lambda, retrieving and posting articles to a Postgres database.
+A React App connects to AWS Lambda, retrieving and posting articles to a Postgres database.  With the frontend on AWS Amplify and the backend on AWS Lambda, this application is fully in the serverless cloud!
 
 ## Lambda
 A short Lambda function is used to write and read the Postgres database using [Sequelize](https://sequelize.org).  Lambda function uploading and API endpoint creation was handled with [Claudia.js](https://claudiajs.com).
