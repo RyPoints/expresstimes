@@ -1,7 +1,7 @@
 # The Express Times
 A newspaper GET/POST example in the JavaScript React stack.
 
-A live version of the React App is up on AWS Amplify at: [https://d30b55fn3g0obi.cloudfront.net](https://d30b55fn3g0obi.cloudfront.net)
+A live version of the React App was up on AWS Amplify until November 2022.
 
 ## Architecture
 [![Architecture](.images/architecture.png)](.images/architecture.png)
